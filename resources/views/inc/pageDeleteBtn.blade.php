@@ -5,10 +5,10 @@
 		$post->id 
 	],
 	'method' => 'POST',
-	'class' => 'pull-right' 
+	'style' => 'display:inline-block'
 ]) !!}
 
 	{{ Form::hidden('_method', 'DELETE') }}
-	{{ Form::submit('Delete', [ 'class' => 'btn btn-danger', 'onclick' => 'return confirm(\'Are you sure?\')' ]) }}
+	{{ Form::submit('Delete', [ 'class' => 'btn btn-danger' ]) }}
 
 {!! Form::close() !!}

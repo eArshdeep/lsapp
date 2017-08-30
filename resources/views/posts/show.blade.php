@@ -17,6 +17,6 @@
 
 	<a href="/posts/{{ $post->id }}/edit" class="btn btn-default">Edit</a>
 
-	@include('inc.pageDeleteBtn')
+	@include('inc.pageDeleteModal')
 
 @endsection
