@@ -39,7 +39,11 @@
               {{ Auth::user()->name }} <span class="caret"></span>
             </a>
 
+            {{--  Admin Dropdown  --}}
             <ul class="dropdown-menu" role="menu">
+
+              <li><a href="{{ route('dashboard') }}">Dashboard</a></li>
+
               <li>
                 <a href="{{ route('logout') }}" onclick="event.preventDefault();
                 document.getElementById('logout-form').submit();"> Logout </a>
@@ -47,6 +51,7 @@
                   {{ csrf_field() }}
                 </form>
               </li>
+
             </ul>
           </li>
         @endif
@@ -54,26 +59,3 @@
     </div>
   </div>
 </nav>
-
-{{--  <nav class="navbar navbar-inverse navbar-static-top">
-  <div class="container">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false"
-        aria-controls="navbar">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="/">{{ config('app.name', 'Web App') }}</a>
-    </div>
-    <div id="navbar" class="collapse navbar-collapse">
-      <ul class="nav navbar-nav">
-
-      </ul>
-      <ul class="nav navbar-nav navbar-right">
-        <li><a href="/posts/create">Create Post</a></li>
-      </ul>
-    </div>
-  </div>
-</nav>  --}}

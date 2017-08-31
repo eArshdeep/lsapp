@@ -2,7 +2,7 @@
 
 @section('content')
 
-	<a href="/posts" class="btn btn-default"> &larr; Posts </a>
+	<a href="{{ URL::previous() }}" class="btn btn-default"> &larr; Back </a>
 
 	<h1>Create a post</h1>
 
@@ -22,7 +22,7 @@
 
 		</div>
 
-		{{ Form::submit('Submit', [ 'class' => 'btn btn-primary' ]) }}
+		{{ Form::submit('Create', [ 'class' => 'btn btn-primary' ]) }}
 
 	{!! Form::close() !!}
 

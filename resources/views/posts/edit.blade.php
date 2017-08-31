@@ -2,7 +2,7 @@
 
 @section('content')
 
-	<a href="/posts/{{ $post->id }}" class="btn btn-default"> &larr; Cancel </a>	
+	<a href="{{ URL::previous() }}" class="btn btn-default"> &larr; Back </a>	
 
 	<h1> Modify Post </h1>
 
