@@ -21,24 +21,4 @@
   </div>
 </div>
 
-<style>
-
-#modal-header {
-	font-size: 30px;
-}
-
-div.modal-content {
-	text-align: center;
-}
-	
-div.modal-header {
-	text-align: center;
-	border-bottom: none;
-}
-
-div.modal-footer {
-	text-align: center;
-	border-top: none;
-}
-
-</style>	
+{{ Html::style('css/deleteModal.css') }}
