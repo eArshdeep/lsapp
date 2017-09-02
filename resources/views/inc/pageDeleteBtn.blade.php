@@ -9,6 +9,6 @@
 ]) !!}
 
 	{{ Form::hidden('_method', 'DELETE') }}
-	{{ Form::submit('Delete', [ 'class' => 'btn btn-danger' ]) }}
+	{{ Form::submit('Delete', [ 'class' => 'btn btn-danger', "id" => "pageDeleteBtn" ]) }}
 
 {!! Form::close() !!}
