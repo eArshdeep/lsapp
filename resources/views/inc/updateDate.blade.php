@@ -1,8 +1,8 @@
 <p>
 	<small>
-		Updated 
+		<b>Updated</b>
 		{{ $post->updated_at->diffForHumans() }}
-		on 
+		<b>On</b>
 		{{ $post->updated_at->format('M/d/Y') }} 
 	</small>
 </p>

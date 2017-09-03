@@ -1,0 +1,19 @@
+.seperator {
+    border-top: solid rgba(170, 46, 46, 0.3) 1px;
+    width: 65%;
+    margin: 50px auto;
+}
+
+.blog-body {
+    font-size: 1.2em;
+    margin: 25px;
+}
+
+.unstyle-anchor {
+    color:#000000 !important;
+    text-decoration:none;
+}
+
+.td-act-btn {
+    width: 50px;
+}

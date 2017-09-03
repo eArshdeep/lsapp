@@ -1,8 +1,10 @@
 <p>
 	<small>
-		Written 
+		<b>Written</b> 
 		{{ $post->created_at->diffForHumans() }}
-		on 
-		{{ $post->created_at->format('M/d/Y') }} 
+		<b>on</b> 
+		{{ $post->created_at->format('M/d/Y') }}
+		<b>by</b>
+		{{ $post->user->name }}
 	</small>
 </p>

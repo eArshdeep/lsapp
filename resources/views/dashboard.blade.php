@@ -25,9 +25,9 @@
                 {{--  loop through post set  --}}
                 @foreach ($post_set as $post)
                     <tr>
-                        <td> {{ $post->title }} </td>
-                        <td> <a href="/posts/{{ $post->id }}/edit" class="btn btn-default">Edit</a> </td>
-                        <td> @include('inc.pageDeleteBtn') </td>
+                        <td> <a href="/posts/{{ $post->id }}" class="unstyle-anchor"> {{ $post->title }} </a> </td>
+                        <td class="td-act-btn"> <a href="/posts/{{ $post->id }}/edit" class="btn btn-default">Edit</a> </td>
+                        <td class="td-act-btn"> @include('inc.pageDeleteBtn') </td>
                     </tr>
                 @endforeach
             </table>

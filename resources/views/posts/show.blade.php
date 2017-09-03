@@ -9,7 +9,9 @@
 	@include('inc.creationDate')
 	@include('inc.updateDate')
 
-	<div>
+	<div class="seperator"></div>
+
+	<div class="blog-body">
 		{!! $post->body !!}
 	</div>
 

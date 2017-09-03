@@ -7,6 +7,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css">
+    <link href="{{ asset('css/custom.css') }}" rel="stylesheet">
     <title>{{ config('app.name', 'Laravel') }}</title>
 </head>
 <body>
