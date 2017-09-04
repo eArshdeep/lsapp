@@ -15,10 +15,16 @@
 		{!! $post->body !!}
 	</div>
 
-	<hr>
-
-	<a href="/posts/{{ $post->id }}/edit" class="btn btn-default">Edit</a>
-
-	@include('inc.pageDeleteBtn')
+	@if ( Auth::check() )
+		<hr>
+		<div class="pull-right">
+			@if( Auth::user()->id == $post->user_id )
+				<a href="/posts/{{ $post->id }}/edit" class="btn btn-default" style="margin-right:15px">Edit</a>
+				@include('inc.pageDeleteBtn')
+			@else
+				<p>You do not have access to modify or remove this post as it was not written by you.</p>
+			@endif
+		</div>
+	@endif
 
 @endsection

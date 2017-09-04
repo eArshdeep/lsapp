@@ -9,6 +9,16 @@ use URL;
 class PostsController extends Controller
 {
     /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth', ['except' => ['index', 'show']]);
+    }
+
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
@@ -40,17 +50,34 @@ class PostsController extends Controller
 
         $this->validate($request, [
             'title' => 'required',
-            'body' => 'required'
+            'body' => 'required',
+            'cover_image' => 'image|nullable|max:1999'
         ]);
+
+        // handle file upload
+        if ( $request->hasFile('cover_image') ) {
+            // get filename with extension
+            $filenameWithExt = $request->file('cover_image')->getClientOriginalName();
+            // get just filename
+            $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+            // get just ext
+            $ext = $request->file('cover_image')->getClientOriginalExtension();
+            // filename to store
+            $filenameToStore = $filename . '_' . time() . '.' . $ext;
+            // upload image
+            $path = $request->file('cover_image')->storeAs('public/cover_images', $filenameToStore);
+        } else {
+            $filenameToStore = 'noimage.jpg';
+        }
 
         $post = new Post;
         $post->title = $request->input('title');
         $post->body = $request->input('body');
         $post->user_id = auth()->user()->id;
+        $post->cover_image = $filenameToStore;
         $post->save();
 
         return redirect('/posts')->with('success', 'Post created successfully');
-
     }
 
     /**
@@ -74,6 +101,10 @@ class PostsController extends Controller
     public function edit($id)
     {
         $post = Post::find($id);
+        // check if user has permission to edit
+        if ( auth()->user()->id !== $post->user_id ) {
+            return redirect('/posts')->with('error', 'You do not have permissions to modify a post you did not write.');
+        }
         return view('posts.edit')->with('post', $post);
     }
 
@@ -108,6 +139,10 @@ class PostsController extends Controller
     public function destroy($id)
     {
         $post = Post::find($id);
+        // check if user has permission to edit
+        if ( auth()->user()->id !== $post->user_id ) {
+            return redirect('/posts')->with('error', 'You cannot delete someone else\'s post!');
+        }
         $post->delete();
         return redirect('/posts')->with('success', 'Post deleted successfully');
     }
