@@ -9,6 +9,8 @@
 	@include('inc.creationDate')
 	@include('inc.updateDate')
 
+	<img src="/storage/cover_images/{{ $post->cover_image }}" style="width:100%">
+
 	<div class="seperator"></div>
 
 	<div class="blog-body">
@@ -17,7 +19,7 @@
 
 	@if ( Auth::check() )
 		<hr>
-		<div class="pull-right">
+		<div class="pull-right margin-adder-bottom">
 			@if( Auth::user()->id == $post->user_id )
 				<a href="/posts/{{ $post->id }}/edit" class="btn btn-default" style="margin-right:15px">Edit</a>
 				@include('inc.pageDeleteBtn')

@@ -7,7 +7,7 @@
 	<h1>Create a post</h1>
 
 	{!! Form::open( [ 'action' => 'PostsController@store', 'method' => 'POST', 'enctype' => 'multipart/form-data' ] ) !!}
-    
+
 		<div class="form-group">
 
 			{{ Form::label('title', 'Titile') }}

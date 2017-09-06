@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use App\Post;
 use URL;
 
@@ -67,7 +68,7 @@ class PostsController extends Controller
             // upload image
             $path = $request->file('cover_image')->storeAs('public/cover_images', $filenameToStore);
         } else {
-            $filenameToStore = 'noimage.jpg';
+            $filenameToStore = 'noimage.jpeg';
         }
 
         $post = new Post;
@@ -119,12 +120,31 @@ class PostsController extends Controller
     {
         $this->validate($request, [
             'title' => 'required',
-            'body' => 'required'
+            'body' => 'required',
+            'cover_image' => 'image|nullable|max:1999'
         ]);
+
+        // handle file upload
+        if ( $request->hasFile('cover_image') ) {
+            // get filename with extension
+            $filenameWithExt = $request->file('cover_image')->getClientOriginalName();
+            // get just filename
+            $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+            // get just ext
+            $ext = $request->file('cover_image')->getClientOriginalExtension();
+            // filename to store
+            $filenameToStore = $filename . '_' . time() . '.' . $ext;
+            // upload image
+            $path = $request->file('cover_image')->storeAs('public/cover_images', $filenameToStore);
+        }
 
         $post = Post::find($id);
         $post->title = $request->input('title');
         $post->body = $request->input('body');
+        if ( $request->hasFile('cover_image') ) {
+          Storage::delete('public/cover_images/' . $post->cover_image);
+          $post->cover_image = $filenameToStore;
+        }
         $post->save();
 
         return redirect()->route('posts.show', ['id' => $id])->with('success', 'Post updated successfully');
@@ -139,10 +159,17 @@ class PostsController extends Controller
     public function destroy($id)
     {
         $post = Post::find($id);
-        // check if user has permission to edit
+
+        // check if user has permission to delete
         if ( auth()->user()->id !== $post->user_id ) {
             return redirect('/posts')->with('error', 'You cannot delete someone else\'s post!');
         }
+
+        // remove associated cover image from storage
+        if ( $post->cover_image != 'noimage.jpeg' ) {
+          Storage::delete('public/cover_images/' . $post->cover_image);
+        }
+
         $post->delete();
         return redirect('/posts')->with('success', 'Post deleted successfully');
     }
