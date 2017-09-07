@@ -29,19 +29,20 @@
 		<div class="row margin-adder-bottom">
             <div class="col-sm-6 col-md-4 col-lg-3 mt-4">
                 <div class="card">
-                    @if ( $post->cover_image != 'noimage.jpeg' )
-						<img class="card-img-top" src="/storage/cover_images/{{ $post->cover_image }}">
-					@else
-						<p class="card-img-none">No Image</p>
-					@endif
+					<img class="card-img-top" src="/storage/cover_images/{{ $post->cover_image }}">
                     <div class="card-block">
                         <h4 class="card-title">Cover Image</h4>
+						<div class="meta">
+                            <span id="fileName"></span>
+                        </div>
                         <div class="card-text">
                             Upload a new cover image, remove your existing cover image or leave it alone!
                         </div>
                     </div>
                     <div class="card-footer">
-                        <a href="#" class="btn btn-default">Say</a>
+						<label class="btn btn-default btn-file">
+							Upload New <input type="file" id="imageInput" style="display: none;">
+						</label>
                     </div>
                 </div>
             </div>

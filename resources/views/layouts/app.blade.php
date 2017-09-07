@@ -31,7 +31,9 @@
     </script>
     {{-- Import sweetalert --}}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
+    {{--  Custom Scripts  --}}
     <script src="{{ asset('js/pageDeleteBtn.js') }}"></script>
+    <script src="{{ asset('js/imageUploader.js') }}"></script>
 
 </body>
 </html>
