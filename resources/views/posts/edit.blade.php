@@ -22,8 +22,25 @@
 
 		</div>
 
-		<div class="form-group">
+		{{--  <div class="form-group">
 			{{ Form::file('cover_image') }}
+		</div>  --}}
+
+		<div class="row margin-adder-bottom">
+            <div class="col-sm-6 col-md-4 col-lg-3 mt-4">
+                <div class="card">
+                    <img class="card-img-top" src="/storage/cover_images/{{ $post->cover_image }}">
+                    <div class="card-block">
+                        <h4 class="card-title">Cover Image</h4>
+                        <div class="card-text">
+                            Upload a new cover image, remove your existing cover image or leave it alone!
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <a href="#" class="btn btn-default">Say</a>
+                    </div>
+                </div>
+            </div>
 		</div>
 
 		{{ Form::hidden('_method', 'PUT') }}
