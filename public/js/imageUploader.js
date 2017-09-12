@@ -11,3 +11,12 @@ $('#imageInput').on('change', function() {
     reader.readAsDataURL(file);
 
 });
+
+// $('#clearImage').on('click', function(orgURL) {
+    
+// });
+
+function restoreImg ( orgURL ) {
+    $("#imageInput").val("");
+    $('.card-img-top').attr('src', orgURL);
+}

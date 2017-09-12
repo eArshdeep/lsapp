@@ -22,12 +22,8 @@
 
 		</div>
 
-		{{--  <div class="form-group">
-			{{ Form::file('cover_image') }}
-		</div>  --}}
-
 		<div class="row margin-adder-bottom">
-            <div class="col-sm-6 col-md-4 col-lg-3 mt-4">
+            <div class="col-sm-6 col-md-6 col-lg-4 mt-4">
                 <div class="card">
 					<img class="card-img-top" src="/storage/cover_images/{{ $post->cover_image }}">
                     <div class="card-block">
@@ -41,8 +37,9 @@
                     </div>
                     <div class="card-footer">
 						<label class="btn btn-default btn-file">
-							Upload New <input type="file" id="imageInput" style="display: none;">
+							Upload New <input type="file" id="imageInput" name="cover_image" style="display: none;">
 						</label>
+						<a class="btn btn-danger" onclick="restoreImg( '{{ "/storage/cover_images/" . $post->cover_image }}' )" >Restore</a>
                     </div>
                 </div>
             </div>
