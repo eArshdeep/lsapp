@@ -12,11 +12,13 @@ $('#imageInput').on('change', function() {
 
 });
 
-// $('#clearImage').on('click', function(orgURL) {
-    
-// });
-
 function restoreImg ( orgURL ) {
     $("#imageInput").val("");
     $('.card-img-top').attr('src', orgURL);
+}
+
+function removeImg() {
+  $("#imageInput").val("");
+  $('.card-img-top').attr('src', '/storage/cover_images/noimage.jpg');
+  $( ".card-footer" ).append( "<input type='hidden' name='removeImg' value='true'>" );
 }

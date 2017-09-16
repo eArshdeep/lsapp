@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use App\Post;
+use Input;
 use URL;
 
 class PostsController extends Controller
@@ -141,10 +142,16 @@ class PostsController extends Controller
         $post = Post::find($id);
         $post->title = $request->input('title');
         $post->body = $request->input('body');
+
         if ( $request->hasFile('cover_image') ) {
           Storage::delete('public/cover_images/' . $post->cover_image);
           $post->cover_image = $filenameToStore;
         }
+        elseif ( Input::has('removeImg') && $post->cover_image != 'noimage.jpg' ) {
+          Storage::delete('public/cover_images/' . $post->cover_image);
+          $post->cover_image = 'noimage.jpg';
+        }
+
         $post->save();
 
         return redirect()->route('posts.show', ['id' => $id])->with('success', 'Post updated successfully');
@@ -166,7 +173,7 @@ class PostsController extends Controller
         }
 
         // remove associated cover image from storage
-        if ( $post->cover_image != 'noimage.jpeg' ) {
+        if ( $post->cover_image != 'noimage.jpg' ) {
           Storage::delete('public/cover_images/' . $post->cover_image);
         }
 

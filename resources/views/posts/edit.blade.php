@@ -40,7 +40,7 @@
 							Upload New <input type="file" id="imageInput" name="cover_image" style="display: none;">
 						</label>
 						<a class="btn btn-default" onclick="restoreImg( '{{ "/storage/cover_images/" . $post->cover_image }}' )" >Restore</a>
-						<a class="btn btn-danger">Remove</a>
+						<a class="btn btn-danger" onclick="removeImg()">Remove</a>
                     </div>
                 </div>
             </div>
