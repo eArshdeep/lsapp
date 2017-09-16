@@ -9,7 +9,9 @@
 	@include('inc.creationDate')
 	@include('inc.updateDate')
 
-	<img src="/storage/cover_images/{{ $post->cover_image }}" style="width:100%">
+	@if ( $post->cover_image != 'noimage.jpg' )
+		<img src="/storage/cover_images/{{ $post->cover_image }}" style="width:100%">
+	@endif
 
 	<div class="seperator"></div>
 
